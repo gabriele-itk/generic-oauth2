@@ -10,9 +10,7 @@ export interface GenericOAuth2Plugin {
    * @param {OAuth2RedirectAuthenticationOptions} options
    * @returns {Promise<any>} the token endpoint response
    */
-  redirectFlowCodeListener(
-    options: ImplicitFlowRedirectOptions,
-  ): Promise<any>;
+  redirectFlowCodeListener(options: ImplicitFlowRedirectOptions): Promise<any>;
   /**
    * Get a new access token based on the given refresh token.
    * @param {OAuth2RefreshTokenOptions} options
@@ -25,10 +23,7 @@ export interface GenericOAuth2Plugin {
    * @param {String} id_token Optional idToken, only for Android
    * @returns {Promise<boolean>} true if the logout was successful else false.
    */
-  logout(
-    options: OAuth2AuthenticateOptions,
-    id_token?: string,
-  ): Promise<boolean>;
+  logout(options: OAuth2AuthenticateOptions, id_token?: string): Promise<boolean>;
 }
 
 export interface ImplicitFlowRedirectOptions extends OAuth2AuthenticateOptions {
@@ -43,6 +38,10 @@ export interface OAuth2RefreshTokenOptions {
    * The app id (client id) you get from the oauth provider like Google, Facebook,...
    */
   appId: string;
+  /**
+   * secret for retrieving the access_token.
+   */
+  clientSecret: string;
   /**
    * Url for retrieving the access_token.
    */
@@ -126,8 +125,7 @@ export interface OAuth2AuthenticateBaseOptions {
   additionalResourceHeaders?: { [key: string]: string };
 }
 
-export interface OAuth2AuthenticateOptions
-  extends OAuth2AuthenticateBaseOptions {
+export interface OAuth2AuthenticateOptions extends OAuth2AuthenticateBaseOptions {
   /**
    * Custom options for the platform "web"
    */
