@@ -25,6 +25,8 @@ export class WebUtils {
    */
   static getAuthorizationUrl(options: WebOptions): string {
     let url = options.authorizationBaseUrl + '?client_id=' + options.appId;
+    url += '&client_secret=' + (options.clientSecret);
+
     url += '&response_type=' + options.responseType;
 
     if (options.redirectUrl) {
@@ -332,6 +334,7 @@ export class CryptoUtils {
 
 export class WebOptions {
   appId: string;
+  clientSecret: string;
   authorizationBaseUrl: string;
   accessTokenEndpoint: string;
   resourceUrl: string;
