@@ -62,6 +62,7 @@ export class WebUtils {
       '=' +
       encodeURIComponent(options.appId) +
       '&';
+    body += encodeURIComponent('client_secret') + '=' + encodeURIComponent(options.clientSecret) + '&'; 
     body +=
       encodeURIComponent('redirect_uri') +
       '=' +
